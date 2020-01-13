@@ -1,3 +1,3 @@
-module.exports = ({ map }, query) => (
-  query in map ? map[query] : null
+module.exports = ({ nodeMap }, query) => (
+  query in nodeMap ? nodeMap[query] : null
 );

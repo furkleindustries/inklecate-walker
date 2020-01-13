@@ -4,13 +4,27 @@ module.exports = (
 ) => {
   const oldStep = story.Step.bind(story);
   story.Step = () => {
+    const {
+      state: {
+        currentPathString: id,
+        currentPointer: {
+          container: {
+            path: { componentsString: containerId },
+          },
+        },
+
+        currentTurnIndex: turnIndex,
+      },
+    } = story;
+
+
     pathHistory.push({
-      id: story.state.currentPathString,
-      turnIndex: story.state.currentTurnIndex,
+      containerId,
+      id,
+      turnIndex,
       type: 'step',
     });
 
-    debugger;
-    oldStep();
+    return oldStep();
   };
 };

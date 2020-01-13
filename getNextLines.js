@@ -1,28 +1,44 @@
-module.exports = (story) => {
+const getLastIds = require('./getLastIds');
+
+module.exports = (
+  story,
+  pathHistory,
+) => {
   const lines = [];
+  let lastContainerId = null;
+  let lastContentPath = null;
 
   while (story.canContinue) {
-    const currentPathString = story.state.currentPathString;
+    story.Continue();
 
-    if (story.currentText.trim() || story.currentTags.length) {
+    const {
+      currentTags: tags,
+      currentText: text,
+      state: { currentTurnIndex },
+    } = story;
+
+    const ids = getLastIds(pathHistory);
+    lastContainerId = ids.lastContainerId;
+    lastContentPath = ids.lastContentPath;
+
+    if (text.trim() || tags.length) {
       lines.push({
-        id: currentPathString,
-        visits: [
+        containerId: lastContainerId,
+        history: [
           {
             content: {
-              text: story.currentText,
-              tags: story.currentTags,
+              tags,
+              text,
             },
 
-            id: story.state.currentPathString,
-            turnIndex: story.state.currentTurnIndex,
+            turnIndex: currentTurnIndex,
           },
         ],
+
+        id: lastContentPath,
         type: 'line',
       });
     }
-
-    story.Continue();
   }
 
   return lines;

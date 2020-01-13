@@ -1,27 +1,28 @@
+const getLastIds = require('./getLastIds');
+
 module.exports = ({
-  currentPathString,
-  currentTurnIndex,
   line,
+  line: {
+    containerId,
+    id,
+    history,
+  },
   nodeMap,
   pathHistory,
+  story: {
+    state: { currentTurnIndex: turnIndex },
+  },
 }) => {
-  if (!(line.id in nodeMap)) {
-    nodeMap[line.id] = line;
+  if (id in nodeMap) {
+    nodeMap[id].history.push(...history);
   } else {
-    nodeMap[line.id].visits.push({
-      content: {
-        tags: line.tags,
-        text: line.text,
-      },
-
-      id: currentPathString,
-      turnIndex: currentTurnIndex,
-    });
+    nodeMap[id] = line;
   }
 
   pathHistory.push({
-    id: line.id,
-    turnIndex: currentTurnIndex,
+    containerId,
+    id,
+    turnIndex,
     type: 'line',
   });
 

@@ -3,7 +3,7 @@ const { readFile } = require('fs-extra');
 const { Story } = require('inkjs');
 const walk = require('./walk');
 
-module.exports = async (inputFilepath, overloads = {}) => {
+module.exports = async (inputFilepath) => {
   let json;
   if (/ink$/i.test(inputFilepath)) {
     json = (await compileInk(inputFilepath)).storyContent;
@@ -13,5 +13,5 @@ module.exports = async (inputFilepath, overloads = {}) => {
 
   const story = new Story(json);
 
-  return walk(story, overloads);
+  return walk(story);
 };

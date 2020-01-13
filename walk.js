@@ -1,17 +1,27 @@
+const collectVisitsForTreePostRun = require('./collectVisitsForTreePostRun');
+const filterTree = require('./filterTree');
+const getLastIds = require('./getLastIds');
 const getNextLines = require('./getNextLines');
+const initializeVisitsForTree = require('./initializeVisitsForTree');
+const printPlaythroughFromTree = require('./printPlaythroughFromTree');
 const walkBlockHandler = require('./walkBlockHandler');
 const walkLineHandler = require('./walkLineHandler');
-const wrapStoryStep = require('./wrapStoryStep');
+const wrapNextContent = require('./wrapNextContent');
+// const wrapStoryStep = require('./wrapStoryStep');
+// const wrapVisitContainer = require('./wrapVisitContainer');
 
 const walk = (story) => {
   const tree =  {
     id: '__TREE__',
     nodeMap: {},
     pathHistory: [],
+    printout: null,
     stateHistory: [],
     tickCount: 0,
     type: 'tree',
   };
+
+  Object.assign(tree, initializeVisitsForTree(story, tree));
 
   const {
     nodeMap,
@@ -19,32 +29,26 @@ const walk = (story) => {
     stateHistory,
   } = tree;
 
-  wrapStoryStep(story, tree);
+  wrapNextContent(story, tree);
+  // wrapStoryStep(story, tree);
+  // wrapVisitContainer(story, tree);
 
   let done = false;
 
   while (!done) {
-    /**
-     * Get the path string before continuing.
-     */
     const {
-      state: {
-        currentPathString,
-        currentTurnIndex,
-      },
+      state: { currentTurnIndex: turnIndex },
     } = story;
 
     /**
      * Collect all the available outputs from the story, both text and tags, and
      * put them in line AST nodes.
      */
-    const lines = getNextLines(story)
+    const lines = getNextLines(story, pathHistory)
       /**
        * Apply the walkLineHandler to each line.
        */
       .map((line) => walkLineHandler({
-        currentPathString,
-        currentTurnIndex,
         line,
         nodeMap,
         pathHistory,
@@ -55,38 +59,58 @@ const walk = (story) => {
        */
       .filter(Boolean);
 
-    const {
-      currentChoices: choices,
-      state: { variablesState },
-    } = story;
-
     /**
      * Apply the block handler. This copies references to all content in the
      * block to the node map.
      */
     walkBlockHandler({
-      choices,
-      currentPathString,
-      currentTurnIndex,
       lines,
       nodeMap,
       pathHistory,
+      story,
     });
+
+    const {
+      currentChoices,
+      variablesState: { jsonToken: content },
+    } = story;
+
+    const {
+      lastContainerId: containerId,
+      lastContentPath: id,
+    } = getLastIds(pathHistory);
 
     stateHistory.push({
-      content: variablesState.jsonToken,
-      id: currentPathString,
-      turnIndex: currentTurnIndex,
+      content,
+      id,
+      turnIndex,
     });
 
-    if (!story.currentChoices.length) {
+    if (!currentChoices.length) {
       done = true;
     } else {
-      story.ChooseChoiceIndex(Math.floor(Math.random() * story.currentChoices.length));
+      const choiceIndex = Math.floor(Math.random() * currentChoices.length);
+      const {
+        targetPath: { componentsString: id },
+      } = currentChoices[choiceIndex];
+
+      pathHistory.push({
+        choiceIndex,
+        containerId,
+        id,
+        turnIndex,
+        type: 'choiceSelection',
+      });
+
+      story.ChooseChoiceIndex(choiceIndex);
     }
   }
 
+  Object.assign(tree, filterTree(tree));
+  Object.assign(tree, collectVisitsForTreePostRun(story, tree));
+
   tree.tickCount += 1;
+  tree.printout = printPlaythroughFromTree(tree);
 
   return tree;
 };
