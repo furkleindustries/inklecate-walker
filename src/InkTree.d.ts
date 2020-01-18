@@ -26,11 +26,11 @@ export interface InkTree {
   readonly iterationIndex: number;
   readonly namedContentVisits: ReadonlyArray<Record<string, number>>;
   readonly nodeMap: InkNodeMap;
-  readonly pathHistories: ReadonlyArray<
-    ReadonlyArray<
-      InkPathHistory<InkPathHistoryTypes>
-    >
-  >;
+  readonly pathHistories: readonly InkPathHistory[][];
+
+  readonly getPrintoutFromContentItemHistory: (
+    history: readonly InkPathHistory[],
+  ) => Promise<string>;
 
   readonly queryNode: (id: string) => Promise<InkNode | null>;
   readonly stateHistories: readonly InkStateHistory[][];
