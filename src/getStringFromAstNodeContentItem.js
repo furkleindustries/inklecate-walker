@@ -5,7 +5,10 @@ const {
   Line,
 } = require('./InkPathHistoryTypes');
 
-module.exports = (item, overload) => {
+module.exports = ({
+  item,
+  overload,
+}) => {
   if (typeof overload === 'function') {
     return overload(item);
   } else if (!item) {
