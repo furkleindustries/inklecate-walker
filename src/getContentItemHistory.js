@@ -60,5 +60,5 @@ module.exports = ({
     if (index === pathHistory.length - 1) {
       return resolve(items);
     }
-  });
+  }
 });
