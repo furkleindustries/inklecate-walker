@@ -1,6 +1,6 @@
 import InkPathHistoryTypes = require('./InkPathHistoryTypes');
 
-export interface InkNodeHistoryItem<T extends InkPathHistoryTypes> {
+export interface InkNodeHistoryItem<T extends InkPathHistoryTypes = InkPathHistoryTypes> {
   readonly containerId: string;
   readonly content?: string;
   readonly id: string;
