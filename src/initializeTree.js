@@ -80,10 +80,10 @@ module.exports = ({
     overloads,
   });
 
-  tree.getPrintoutFromContentItemHistory = (itemHistory, overloads) => (
+  tree.getPrintoutFromContentItemHistory = (itemHistory, overload) => (
     printPlaythroughFromItemHistory({
       itemHistory,
-      overloads,
+      overload,
     })
   );
 
