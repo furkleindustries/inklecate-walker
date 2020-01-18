@@ -1,6 +1,5 @@
 module.exports = ({
   iterationIndex,
-  node,
   node: { history },
   turnIndex,
 }) => {

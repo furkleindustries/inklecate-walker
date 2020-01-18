@@ -1,4 +1,3 @@
-import InkPathHistoryTypes = require('./InkPathHistoryTypes');
 import {
   InkNode,
 } from 'inklecate/types/InkNode';
@@ -10,6 +9,6 @@ declare function getHistoryItemAtTurnIndex(args: {
   readonly iterationIndex: number,
   readonly node: InkNode,
   readonly turnIndex: number,
-}): InkNodeHistoryItem<InkPathHistoryTypes> | null;
+}): InkNodeHistoryItem | null;
 
 export = getHistoryItemAtTurnIndex;

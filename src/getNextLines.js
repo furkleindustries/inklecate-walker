@@ -19,8 +19,6 @@ module.exports = ({
   }
 
   const lines = [];
-  let lastContainerId = null;
-  let lastContentPath = null;
 
   while (story.canContinue) {
     story.Continue();
@@ -28,7 +26,7 @@ module.exports = ({
     const {
       currentTags: tags,
       currentText: text,
-      state: { currentTurnIndex },
+      state: { currentTurnIndex: turnIndex },
     } = story;
 
     const {
@@ -36,25 +34,25 @@ module.exports = ({
       id,
     } = getLastIds(tree);
 
-    lastContainerId = containerId;
-    lastContentPath = id;
-
     if (text.trim() || tags.length) {
       lines.push({
-        containerId: lastContainerId,
+        containerId,
         history: [
           {
+            containerId,
             content: {
               tags,
               text,
             },
 
+            id,
             iterationIndex,
-            turnIndex: currentTurnIndex,
+            turnIndex,
+            type: Line,
           },
         ],
 
-        id: lastContentPath,
+        id,
         type: Line,
       });
     }

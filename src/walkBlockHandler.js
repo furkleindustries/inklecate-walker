@@ -60,9 +60,12 @@ module.exports = ({
     const containerId = sourcePath || null;
 
     const historyItem = {
+      containerId,
       content,
+      id,
       iterationIndex,
       turnIndex,
+      type: Choice,
     };
 
     if (id in nodeMap) {
