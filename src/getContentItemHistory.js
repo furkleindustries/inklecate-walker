@@ -1,4 +1,5 @@
 const getHistoryItemAtIterationAndTurnIndex = require('./getHistoryItemAtIterationAndTurnIndex');
+const { ChoiceSelection } = require('./InkPathHistoryTypes');
 const query = require('./query');
 
 module.exports = ({
@@ -22,6 +23,7 @@ module.exports = ({
 
   const items = [];
   pathHistory.forEach(async ({
+    choiceIndex,
     id,
     turnIndex,
   }) => {
@@ -33,6 +35,17 @@ module.exports = ({
     }
 
     if (node) {
+      if (type === ChoiceSelection) {
+        items.push({
+          containerId: null,
+          content: `> #${choiceIndex}`,
+          id: null,
+          iterationIndex,
+          turnIndex,
+          type: ChoiceSelection,
+        });
+      }
+
       const item = getHistoryItemAtIterationAndTurnIndex({
         iterationIndex,
         node,

@@ -5,6 +5,6 @@ export interface InkNodeHistoryItem<T extends InkPathHistoryTypes = InkPathHisto
   readonly content?: string;
   readonly id: string;
   readonly iterationIndex: number;
-  readonly type: T;
   readonly turnIndex: number;
+  readonly type: T;
 }

@@ -25,8 +25,8 @@ module.exports = ({
     return `* ${content}`;
   } else if (type === ChoicePoint) {
     return '***';
-  } else if (type === ChoiceSelection && Number(choiceIndex) >= 0) {
-    return `> #${choiceIndex + 1}\n***\n`;
+  } else if (type === ChoiceSelection && content) {
+    return content;
   } else if (type === Line && content && content.text) {
     return content.text;
   }
