@@ -29,7 +29,7 @@ export interface InkTree {
   readonly pathHistories: readonly InkPathHistory[][];
 
   readonly getPrintoutFromContentItemHistory: (
-    history: readonly InkPathHistory[],
+    history: readonly InkNodeHistoryItem[],
   ) => Promise<string>;
 
   readonly queryNode: (id: string) => Promise<InkNode | null>;
