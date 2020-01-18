@@ -2,10 +2,11 @@ const getContentItemHistory = require('./getContentItemHistory');
 const printPlaythroughFromItemHistory = require('./printPlaythroughFromItemHistory');
 
 module.exports = ({
+  iterationIndex,
   nodeMap,
-  pathHistories,
   overloads,
-}, iterationIndex) => new Promise(async (resolve, reject) => {
+  pathHistories,
+}) => new Promise(async (resolve, reject) => {
   if (overloads && typeof overloads.printPlaythroughFromTree === 'function') {
     try {
       return resolve(await overloads.printPlaythroughFromTree({

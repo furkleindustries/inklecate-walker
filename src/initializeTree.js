@@ -1,4 +1,6 @@
+const getContentItemHistory = require('./getContentItemHistory');
 const printPlaythroughFromTree = require('./printPlaythroughFromTree');
+const query = require('./query');
 const validateTreeWithErrorOnFail = require('./validateTreeWithErrorOnFail');
 const wrapNextContent = require('./wrapNextContent');
 
@@ -61,7 +63,23 @@ module.exports = ({
     return reject(err);
   }
 
-  tree.getPrintout = printPlaythroughFromTree.bind(null, tree);
+  tree.getPrintout = (iterationIndex, overloads) => printPlaythroughFromTree({
+    iterationIndex,
+    nodeMap: tree.nodeMap,
+    pathHistories: tree.pathHistories,
+    overloads,
+  });
+
+  tree.getContentItemHistory = (iterationIndex, overload) => (
+    getContentItemHistory({
+      iterationIndex,
+      nodeMap: tree.nodeMap,
+      pathHistories: tree.pathHistories,
+      overload,
+    })
+  );
+
+  tree.queryNode = query.bind(null, tree);
 
   return resolve(tree);
 });
