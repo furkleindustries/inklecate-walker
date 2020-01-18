@@ -1,6 +1,6 @@
 {
   "name": "inklecate-walker",
-  "version": "0.4.8",
+  "version": "0.4.9",
   "description": "A headless (non-graphical) analysis tool for Ink scripts.",
   "main": "index.js",
   "scripts": {

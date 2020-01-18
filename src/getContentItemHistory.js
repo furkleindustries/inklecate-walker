@@ -22,11 +22,11 @@ module.exports = ({
   }
 
   const items = [];
-  pathHistory.forEach(async ({
+  for (const {
     choiceIndex,
     id,
     turnIndex,
-  }) => {
+  } of pathHistory) {
     let node;
     try {
       node = await query({ nodeMap }, id);
@@ -44,19 +44,21 @@ module.exports = ({
           turnIndex,
           type: ChoiceSelection,
         });
-      }
-
-      const item = getHistoryItemAtIterationAndTurnIndex({
-        iterationIndex,
-        node,
-        turnIndex,
-      });
-
-      if (item) {
-        items.push(item);
+      } else {
+        const item = getHistoryItemAtIterationAndTurnIndex({
+          iterationIndex,
+          node,
+          turnIndex,
+        });
+  
+        if (item) {
+          items.push(item);
+        }
       }
     }
 
-    return resolve(items);
+    if (index === pathHistory.length - 1) {
+      return resolve(items);
+    }
   });
 });

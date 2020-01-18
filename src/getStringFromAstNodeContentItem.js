@@ -16,7 +16,6 @@ module.exports = ({
   }
 
   const {
-    choiceIndex,
     content,
     type,
   } = item;
