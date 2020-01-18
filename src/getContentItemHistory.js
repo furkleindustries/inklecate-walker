@@ -39,7 +39,7 @@ module.exports = ({
       if (type === ChoiceSelection) {
         items.push({
           containerId: null,
-          content: `> #${choiceIndex}`,
+          content: choiceIndex,
           id: null,
           iterationIndex,
           turnIndex,
