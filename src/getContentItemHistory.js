@@ -35,7 +35,7 @@ module.exports = ({
     }
 
     if (node) {
-      if (type === ChoiceSelection) {
+      if (node.type === ChoiceSelection) {
         items.push({
           containerId: null,
           content: `> #${choiceIndex}`,
