@@ -77,7 +77,7 @@ module.exports = ({
       overload: overloads && typeof overloads.blockHandler === 'function' ?
         overload.blockHandler :
         undefined,
-  
+
       story,
       tree,
     });
@@ -122,7 +122,7 @@ module.exports = ({
   let choice;
   let choiceIndex;
   try {
-    const result = await getChoiceAndIndexFromChoiceList({
+    const result = getChoiceAndIndexFromChoiceList({
       overload: overloads &&
         typeof overloads.getChoiceAndIndexFromChoiceList === 'function' ?
           overloads.getChoiceAndIndexFromChoiceList :

@@ -22,11 +22,12 @@ module.exports = ({
   }
 
   const items = [];
-  for (const {
+  await Promise.all(pathHistory.map(({
     choiceIndex,
     id,
     turnIndex,
-  } of pathHistory) {
+    type,
+  }) => new Promise(async (innerResolve) => {
     let node;
     try {
       node = await query({ nodeMap }, id);
@@ -35,14 +36,14 @@ module.exports = ({
     }
 
     if (node) {
-      if (node.type === ChoiceSelection) {
+      if (type === ChoiceSelection) {
         items.push({
           containerId: null,
           content: `> #${choiceIndex}`,
           id: null,
           iterationIndex,
           turnIndex,
-          type: ChoiceSelection,
+          type,
         });
       } else {
         const item = getHistoryItemAtIterationAndTurnIndex({
@@ -57,8 +58,8 @@ module.exports = ({
       }
     }
 
-    if (index === pathHistory.length - 1) {
-      return resolve(items);
-    }
-  }
+    return innerResolve();
+  })));
+
+  return resolve(items);
 });
