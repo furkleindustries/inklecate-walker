@@ -8,21 +8,23 @@ const {
 module.exports = (item, overload) => {
   if (typeof overload === 'function') {
     return overload(item);
+  } else if (!item) {
+    return;
   }
 
-  if (type === Choice && item && item.content) {
-    return `* ${item.content}`;
+  const {
+    choiceIndex,
+    content,
+    type,
+  } = item;
+
+  if (type === Choice && content) {
+    return `* ${content}`;
   } else if (type === ChoicePoint) {
     return '***';
-  } else if (type === ChoiceSelection) {
+  } else if (type === ChoiceSelection && Number(choiceIndex) >= 0) {
     return `> #${choiceIndex + 1}\n***\n`;
-  } else if (type === Line && item && item.content) {
-    const {
-      content: { text },
-    } = item;
-
-    if (text) {
-      return text;
-    }
+  } else if (type === Line && content && content.text) {
+    return content.text;
   }
 };
