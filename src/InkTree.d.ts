@@ -13,7 +13,7 @@ import {
 } from './InkStateHistory';
 
 export interface InkTree {
-  readonly getPrintout: () => string;
+  readonly getPrintout: (iterationIndex: number) => Promise<string>;
   readonly inputFilepath: string;
   readonly iterationCount: number;
   readonly iterationIndex: number;
@@ -25,6 +25,6 @@ export interface InkTree {
     >
   >;
 
-  readonly stateHistories: readonly InkStateHistory[];
+  readonly stateHistories: readonly InkStateHistory[][];
   readonly tickCounts: readonly number[];
 }

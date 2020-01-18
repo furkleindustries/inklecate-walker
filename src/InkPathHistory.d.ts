@@ -1,6 +1,6 @@
 import InkPathHistoryTypes = require('./InkPathHistoryTypes');
 
-export interface InkPathHistory<T extends InkPathHistoryTypes> {
+export interface InkPathHistory<T extends InkPathHistoryTypes = InkPathHistoryTypes> {
   readonly choiceIndex: T extends InkPathHistoryTypes.ChoiceSelection ?
     number :
     undefined;
