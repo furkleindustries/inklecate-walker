@@ -1,7 +1,11 @@
-const getLastIds = require('./getLastIds');
-const { Line } = require('./InkPathHistoryTypes');
+import {
+  getLastIds,
+} from './getLastIds';
+import {
+  InkNodeTypes,
+} from './InkNodeTypes';
 
-module.exports = ({
+export const getNextLines = ({
   overload,
   story,
   tree,
@@ -34,6 +38,7 @@ module.exports = ({
       id,
     } = getLastIds(tree);
 
+    const type = InkNodeTypes.Line;
     if (text.trim() || tags.length) {
       lines.push({
         containerId,
@@ -48,12 +53,12 @@ module.exports = ({
             id,
             iterationIndex,
             turnIndex,
-            type: Line,
+            type,
           },
         ],
 
         id,
-        type: Line,
+        type: InkNodeTypes.Line,
       });
     }
   }

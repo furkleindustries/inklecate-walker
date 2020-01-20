@@ -1,6 +1,8 @@
-const { Step } = require('./InkPathHistoryTypes');
+import {
+  InkNodeTypes,
+} from './InkNodeTypes';
 
-module.exports = ({
+export const wrapStoryStep = ({
   story,
   tree,
 }) => {
@@ -35,7 +37,7 @@ module.exports = ({
       id,
       iterationIndex,
       turnIndex,
-      type: Step,
+      type: InkNodeTypes.Step,
     });
 
     return oldStep();

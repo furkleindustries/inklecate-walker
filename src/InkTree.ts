@@ -10,7 +10,7 @@ import {
 import {
   InkPathHistory,
 } from './InkPathHistory';
-import InkPathHistoryTypes = require('./InkPathHistoryTypes');
+import InkPathHistoryTypes = require('./InkNodeTypes');
 import {
   InkStateHistory,
 } from './InkStateHistory';

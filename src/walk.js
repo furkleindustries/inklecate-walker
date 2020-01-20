@@ -1,7 +1,11 @@
-const initializeTree = require('./initializeTree');
-const walkIteratively = require('./walkIteratively');
+import {
+  initializeTree,
+} from './initializeTree';
+import {
+  walkIteratively,
+} from './walkIteratively';
 
-const walk = ({
+export const walk = ({
   inputFilepath = '__NONE__',
   iterationCount = 1,
   overloads = {},
@@ -34,5 +38,3 @@ const walk = ({
 
   return resolve(tree);
 });
-
-module.exports = walk;

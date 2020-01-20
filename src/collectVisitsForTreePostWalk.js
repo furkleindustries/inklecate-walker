@@ -1,4 +1,4 @@
-module.exports = ({
+export const collectVisitsForTreePostWalk = ({
   overload,
   story,
   tree,

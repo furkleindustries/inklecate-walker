@@ -1,8 +1,14 @@
-const getHistoryItemAtIterationAndTurnIndex = require('./getHistoryItemAtIterationAndTurnIndex');
-const { ChoiceSelection } = require('./InkPathHistoryTypes');
-const query = require('./query');
+import {
+  getHistoryItemAtIterationAndTurnIndex,
+} from './getHistoryItemAtIterationAndTurnIndex';
+import {
+  InkNodeTypes,
+} from './InkNodeTypes';
+import {
+  query,
+} from './query';
 
-module.exports = ({
+export const getContentItemHistory = ({
   iterationIndex,
   nodeMap,
   overload,
@@ -36,7 +42,7 @@ module.exports = ({
     }
 
     if (node) {
-      if (type === ChoiceSelection) {
+      if (type === InkNodeTypes.ChoiceSelection) {
         items.push({
           containerId: null,
           content: choiceIndex,

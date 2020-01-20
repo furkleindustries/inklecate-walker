@@ -1,8 +1,14 @@
-const treePostWalk = require('./treePostWalk');
-const treePreWalk = require('./treePreWalk');
-const walkSingleTick = require('./walkSingleTick');
+import {
+  treePostWalk,
+} from './treePostWalk';
+import {
+  treePreWalk,
+} from './treePreWalk';
+import {
+  walkSingleTick,
+} from './walkSingleTick';
 
-module.exports = ({
+export const walkIteratively = ({
   overloads,
   story: initialStory,
   tree: initialTree,

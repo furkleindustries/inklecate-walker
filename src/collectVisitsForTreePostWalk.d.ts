@@ -5,7 +5,7 @@ import {
   InkTree,
 } from './InkTree';
 
-declare function collectVisitsForTreePostWalk(args: {
+export function collectVisitsForTreePostWalk(args: {
   readonly overload: (args: {
     readonly story: InklecateStory;
     readonly tree: InkTree;
@@ -15,4 +15,3 @@ declare function collectVisitsForTreePostWalk(args: {
   readonly tree: InkTree;
 }): Promise<InkTree>;
 
-export = collectVisitsForTreePostWalk;

@@ -1,18 +1,9 @@
 import {
-  InklecateStory,
-} from 'inklecate/types/InklecateStory';
-import {
-  InkTree,
-} from './InkTree';
+  DefaultWalkerArgs,
+} from './DefaultWalkerArgs';
 
-declare function walkBlockHandler(args: {
-  readonly overload?: (args: {
-    readonly story: InklecateStory;
-    readonly tree: InkTree;
-  }) => Promise<void>;
+export function walkBlockHandler(
+  args: DefaultWalkerArgs &
+    { readonly overload?: (args: DefaultWalkerArgs) => Promise<void>; },
+): Promise<void>;
 
-  readonly story: InklecateStory;
-  readonly tree: InkTree;
-}): Promise<void>;
-
-export = walkBlockHandler;

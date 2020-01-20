@@ -1,4 +1,4 @@
-module.exports = Object.freeze({
+export const InkNodeTypes = Object.freeze({
   Choice: 'choice',
   ChoicePoint: 'choicePoint',
   ChoiceSelection: 'choiceSelection',

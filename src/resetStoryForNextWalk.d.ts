@@ -1,18 +1,14 @@
 import {
-  InklecateStory,
-} from 'inklecate/types/InklecateStory';
+  DefaultWalkerArgs,
+} from './DefaultWalkerArgs';
+import {
+  Story,
+} from 'inkjs/engine/Story';
 import {
   InkTree,
 } from './InkTree';
 
-declare function resetStoryForNextWalk(args: {
-  readonly overload?: (args: {
-    readonly story: InklecateStory;
-    readonly tree: InkTree;
-  }) => Promise<InklecateStory>;
-
-  readonly story: InklecateStory;
-  readonly tree: InkTree;
-}): Promise<InklecateStory>;
-
-export = resetStoryForNextWalk;
+export function resetStoryForNextWalk(
+  args: DefaultWalkerArgs &
+    { readonly overload?: (args: DefaultWalkerArgs) => Promise<Story>; },
+): Promise<Story>;

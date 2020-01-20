@@ -2,9 +2,7 @@ import {
   InkNodeHistoryItem,
 } from './InkNodeHistoryItem';
 
-declare function getStringFromAstNodeContentItem(args: {
+export function getStringFromAstNodeContentItem(args: {
   readonly item: InkNodeHistoryItem;
-  readonly overload?: (item: InkNodeHistoryItem) => void;
+  readonly overload?: (item: InkNodeHistoryItem) => string;
 }): string;
-
-export = getStringFromAstNodeContentItem;

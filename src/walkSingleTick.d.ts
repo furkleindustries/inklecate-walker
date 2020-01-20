@@ -1,40 +1,31 @@
 import {
-  InklecateStory,
-} from 'inklecate/types/InklecateStory';
+  DefaultWalkerArgs,
+} from './DefaultWalkerArgs';
 import {
   InkNode,
 } from './InkNode';
-import InkPathHistoryTypes = require('./InkPathHistoryTypes');
+import {
+  InkNodeTypes,
+} from './InkNodeTypes';
 import {
   InkTree,
 } from './InkTree';
 
-declare function walkSingleTick(args: {
-  readonly overloads?: {
-    readonly getNextLines?: (args: {
-      readonly story: InklecateStory;
-      readonly tree: InkTree;
-    }) => Promise<ReadonlyArray<InkNode<InkPathHistoryTypes.Line>>>;
+export function walkSingleTick(
+  args: DefaultWalkerArgs &
+    {
+      readonly overloads?: {
+        readonly getNextLines?: (
+          args: DefaultWalkerArgs,
+        ) => Promise<ReadonlyArray<InkNode<InkNodeTypes.Line>>>;
 
-    readonly walkBlockHandler?: (args: {
-      readonly story: InklecateStory;
-      readonly tree: InkTree;
-    }) => Promise<void>;
+        readonly walkBlockHandler?: (args: DefaultWalkerArgs) => Promise<void>;
+        readonly walkLineHandler?: (
+          args: DefaultWalkerArgs &
+            { readonly line: InkNode<InkNodeTypes.Line>; },
+        ) => Promise<void>;
 
-    readonly walkLineHandler?: (args: {
-      readonly line: InkNode<InkPathHistoryTypes.Line>;
-      readonly story: InklecateStory;
-      readonly tree: InkTree;
-    }) => Promise<void>;
-
-    readonly walkSingleTick?: (args: {
-      readonly story: InklecateStory;
-      readonly tree: InkTree;
-    }) => Promise<boolean>;
-  };
-
-  readonly story: InklecateStory;
-  readonly tree: InkTree;
-}): Promise<boolean>;
-
-export = walkSingleTick;
+        readonly walkSingleTick?: (args: DefaultWalkerArgs) => Promise<boolean>;
+      };
+    },
+): Promise<boolean>;

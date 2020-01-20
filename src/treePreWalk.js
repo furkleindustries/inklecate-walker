@@ -1,4 +1,4 @@
-module.exports = ({
+export const treePreWalk = ({
   overload,
   story,
   tree,

@@ -1,6 +1,8 @@
-const getStringFromAstNodeContentItem = require('./getStringFromAstNodeContentItem');
+import {
+  getStringFromAstNodeContentItem,
+} from './getStringFromAstNodeContentItem';
 
-module.exports = ({
+export const printPlaythroughFromItemHistory = ({
   itemHistory,
   overloads,
 }) => {

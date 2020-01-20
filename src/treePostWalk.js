@@ -1,8 +1,14 @@
-const collectVisitsForTreePostRun = require('./collectVisitsForTreePostWalk');
-const filterTree = require('./filterTree');
-const resetStoryForNextWalk = require('./resetStoryForNextWalk');
+import {
+  collectVisitsForTreePostWalk,
+} from './collectVisitsForTreePostWalk';
+import {
+  filterTree,
+} from './filterTree';
+import {
+  resetStoryForNextWalk,
+} from './resetStoryForNextWalk';
 
-module.exports = ({
+export const treePostWalk = ({
   overloads,
   story: initialStory,
   ticks,
@@ -43,10 +49,10 @@ module.exports = ({
     /**
      * Collect visits directly from inkjs after the run is complete.
      */
-    tree = await collectVisitsForTreePostRun({
+    tree = await collectVisitsForTreePostWalk({
       overload: overloads &&
-        typeof overloads.collectVisitsForTreePostRun === 'function' ?
-          overloads.collectVisitsForTreePostRun :
+        typeof overloads.collectVisitsForTreePostWalk === 'function' ?
+          overloads.collectVisitsForTreePostWalk :
           undefined,
   
       story,

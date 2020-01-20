@@ -1,4 +1,7 @@
 import {
+  DefaultWalkerArgs,
+} from './DefaultWalkerArgs';
+import {
   InklecateStory,
 } from 'inklecate/types/InklecateStory';
 import {
@@ -7,16 +10,15 @@ import {
 import {
   InkTree,
 } from './InkTree';
-import InkPathHistoryTypes = require('./InkPathHistoryTypes');
+import {
+  InkNodeTypes,
+} from './InkNodeTypes';
 
-declare function getNextLines(args: {
-  readonly overload: (args: {
-    readonly story: InklecateStory;
-    readonly tree: InkTree;
-  }) => Promise<ReadonlyArray<InkNode<InkPathHistoryTypes.Line>>>;
-
-  readonly story: InklecateStory,
-  readonly tree: InkTree,
-}): Promise<ReadonlyArray<InkNode<InkPathHistoryTypes.Line>>>;
-
-export = getNextLines;
+export function getNextLines(
+  args: DefaultWalkerArgs &
+    {
+      readonly overload: (
+        args: DefaultWalkerArgs,
+      ) => Promise<ReadonlyArray<InkNode<InkNodeTypes.Line>>>;
+    },
+): Promise<ReadonlyArray<InkNode<InkNodeTypes.Line>>>;

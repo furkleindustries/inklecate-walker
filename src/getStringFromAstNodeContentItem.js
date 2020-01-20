@@ -1,11 +1,8 @@
-const {
-  Choice,
-  ChoicePoint,
-  ChoiceSelection,
-  Line,
-} = require('./InkPathHistoryTypes');
+import {
+  InkNodeTypes,
+} from './InkNodeTypes';
 
-module.exports = ({
+export const getStringFromAstNodeContentItem = ({
   item,
   overload,
 }) => {
@@ -20,13 +17,13 @@ module.exports = ({
     type,
   } = item;
 
-  if (type === Choice && content) {
+  if (type === InkNodeTypes.Choice && content) {
     return `* ${content}`;
-  } else if (type === ChoicePoint) {
+  } else if (type === InkNodeTypes.ChoicePoint) {
     return '***';
-  } else if (type === ChoiceSelection && content) {
+  } else if (type === InkNodeTypes.ChoiceSelection && content) {
     return content;
-  } else if (type === Line && content && content.text) {
+  } else if (type === InkNodeTypes.Line && content && content.text) {
     return content.text;
   }
 };

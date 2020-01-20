@@ -1,22 +1,16 @@
 import {
-  InklecateStory,
-} from 'inklecate/types/InklecateStory';
+  DefaultWalkerArgs,
+} from './DefaultWalkerArgs';
 import {
-  InkTree,
-} from './InkTree';
+  Choice,
+} from 'inkjs/engine/Choice';
 
-declare function makeChoice(args: {
-  readonly choice: any;
+interface MakeChoiceArgs extends DefaultWalkerArgs {
+  readonly choice: Choice;
   readonly choiceIndex: number;
-  readonly overload?: (args: {
-    readonly choice: any;
-    readonly choiceIndex: number;
-    readonly story: InklecateStory;
-    readonly tree: InkTree;
-  }) => Promise<void>;
+}
 
-  readonly story: InklecateStory;
-  readonly tree: InkTree;
-}): Promise<void>;
-
-export = makeChoice;
+export function makeChoice(
+  args: MakeChoiceArgs &
+    { readonly overload?: (args: MakeChoiceArgs) => Promise<void>; },
+): Promise<void>;

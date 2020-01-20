@@ -1,12 +1,26 @@
-const getChoiceAndIndexFromChoiceList = require('./getChoiceAndIndexFromChoiceList');
-const getLastIds = require('./getLastIds');
-const getNextLines = require('./getNextLines');
-const { ChoiceSelection } = require('./InkPathHistoryTypes');
-const makeChoice = require('./makeChoice');
-const walkBlockHandler = require('./walkBlockHandler');
-const walkLineHandler = require('./walkLineHandler');
+import {
+  getChoiceAndIndexFromChoiceList,
+} from './getChoiceAndIndexFromChoiceList';
+import {
+  getLastIds,
+} from './getLastIds';
+import {
+  getNextLines,
+} from './getNextLines';
+import {
+  InkNodeTypes,
+} from './InkNodeTypes';
+import {
+  makeChoice,
+} from './makeChoice';
+import {
+  walkBlockHandler,
+} from './walkBlockHandler';
+import {
+  walkLineHandler,
+} from './walkLineHandler';
 
-module.exports = ({
+export const walkSingleTick = ({
   overloads,
   story,
   tree,
@@ -158,7 +172,7 @@ module.exports = ({
     id: targetId,
     iterationIndex,
     turnIndex,
-    type: ChoiceSelection,
+    type: InkNodeTypes.ChoiceSelection,
   });
 
   try {

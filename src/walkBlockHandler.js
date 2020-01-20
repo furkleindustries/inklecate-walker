@@ -1,10 +1,11 @@
-const getLastIds = require('./getLastIds');
-const {
-  Choice,
-  ChoicePoint,
-} = require('./InkPathHistoryTypes');
+import {
+  getLastIds,
+} from './getLastIds';
+import {
+  InkNodeTypes,
+} from './InkNodeTypes';
 
-module.exports = ({
+export const walkBlockHandler = ({
   overload,
   story,
   story: {
@@ -42,7 +43,7 @@ module.exports = ({
     id,
     iterationIndex,
     turnIndex,
-    type: ChoicePoint,
+    type: InkNodeTypes.ChoicePoint,
   });
 
   currentChoices.forEach(({
@@ -65,7 +66,7 @@ module.exports = ({
       id,
       iterationIndex,
       turnIndex,
-      type: Choice,
+      type: InkNodeTypes.Choice,
     };
 
     if (id in nodeMap) {
@@ -76,7 +77,7 @@ module.exports = ({
         history: [ historyItem ],
         id,
         turnIndex,
-        type: Choice,
+        type: InkNodeTypes.Choice,
       };
     }
 
@@ -85,7 +86,7 @@ module.exports = ({
       id,
       iterationIndex,
       turnIndex,
-      type: Choice,
+      type: InkNodeTypes.Choice,
     });
   });
 

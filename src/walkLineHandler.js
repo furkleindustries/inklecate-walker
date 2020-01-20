@@ -1,6 +1,8 @@
-const { Line } = require('./InkPathHistoryTypes');
+import {
+  InkNodeTypes,
+} from './InkNodeTypes';
 
-module.exports = ({
+export const walkLineHandler = ({
   line,
   line: {
     containerId,
@@ -37,12 +39,14 @@ module.exports = ({
     nodeMap[id] = line;
   }
 
+  const type = InkNodeTypes.Line;
+
   pathHistory.push({
     containerId,
     id,
     iterationIndex,
     turnIndex,
-    type: Line,
+    type,
   });
 
   return resolve();

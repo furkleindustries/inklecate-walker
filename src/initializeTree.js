@@ -1,11 +1,23 @@
-const getContentItemHistory = require('./getContentItemHistory');
-const printPlaythroughFromItemHistory = require('./printPlaythroughFromItemHistory');
-const printPlaythroughFromTree = require('./printPlaythroughFromTree');
-const query = require('./query');
-const validateTreeWithErrorOnFail = require('./validateTreeWithErrorOnFail');
-const wrapNextContent = require('./wrapNextContent');
+import {
+  getContentItemHistory,
+} from './getContentItemHistory';
+import {
+  printPlaythroughFromItemHistory,
+} from './printPlaythroughFromItemHistory';
+import {
+  printPlaythroughFromTree,
+} from './printPlaythroughFromTree';
+import {
+  query,
+} from './query';
+import {
+  validateTreeWithErrorOnFail,
+} from './validateTreeWithErrorOnFail';
+import {
+  wrapNextContent,
+} from './wrapNextContent';
 
-module.exports = ({
+export const initializeTree = ({
   inputFilepath,
   iterationCount,
   overload,

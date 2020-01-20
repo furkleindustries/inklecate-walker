@@ -1,20 +1,17 @@
 import {
-  InklecateStory,
-} from 'inklecate/types/InklecateStory';
+  Story,
+} from 'inkjs/engine/Story';
 import {
   InkTree,
 } from './InkTree';
 
-declare function initializeTree(args: {
+interface InitializeTreeArgs {
   readonly inputFilepath: string;
   readonly iterationCount: number;
-  readonly overload?: (args: {
-    readonly inputFilepath: string;
-    readonly iterationCount: number;
-    readonly story: InklecateStory;
-  }) => Promise<InkTree>;
+  readonly story: Story;
+}
 
-  readonly story: InklecateStory;
-}): Promise<InkTree>;
-
-export = initializeTree;
+export function initializeTree(
+  args: InitializeTreeArgs &
+    { readonly overload?: (args: InitializeTreeArgs) => Promise<InkTree>; },
+): Promise<InkTree>;

@@ -2,9 +2,9 @@ import {
   InkTree,
 } from './InkTree';
 
-declare function getLastIds(tree: InkTree): {
+interface LastIds {
   readonly containerId: string;
   readonly id: string;
-};
+}
 
-export = getLastIds;
+export function getLastIds(tree: InkTree): LastIds;

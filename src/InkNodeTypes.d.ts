@@ -1,4 +1,4 @@
-declare enum InkPathHistoryTypes {
+export enum InkNodeTypes {
   Choice = 'choice',
   ChoicePoint = 'choicePoint',
   ChoiceSelection = 'choiceSelection',
@@ -7,5 +7,3 @@ declare enum InkPathHistoryTypes {
   NextContent = 'nextContent',
   Step = 'step',
 }
-
-export = InkPathHistoryTypes;

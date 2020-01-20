@@ -1,7 +1,11 @@
-const getContentItemHistory = require('./getContentItemHistory');
-const printPlaythroughFromItemHistory = require('./printPlaythroughFromItemHistory');
+import {
+  getContentItemHistory,
+} from './getContentItemHistory';
+import {
+  printPlaythroughFromItemHistory,
+} from './printPlaythroughFromItemHistory';
 
-module.exports = ({
+export const printPlaythroughFromTree = ({
   iterationIndex,
   nodeMap,
   overloads,

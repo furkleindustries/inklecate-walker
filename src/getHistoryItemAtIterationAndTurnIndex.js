@@ -1,4 +1,4 @@
-module.exports = ({
+export const getHistoryItemAtIterationAndTurnIndex = ({
   iterationIndex,
   node: { history },
   turnIndex,

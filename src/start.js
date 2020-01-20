@@ -1,9 +1,17 @@
-const compileInk = require('./compileInk');
-const { readFile } = require('fs-extra');
-const { Story } = require('inkjs');
-const walk = require('./walk');
+import {
+  compileInk,
+} from './compileInk';
+import {
+  readFile,
+} from 'fs-extra';
+import {
+  Story,
+} from 'inkjs';
+import {
+  walk,
+} from './walk';
 
-module.exports = ({
+export const start = ({
   inputFilepath,
   iterationCount,
   overloads = {},

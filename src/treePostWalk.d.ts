@@ -1,40 +1,29 @@
 import {
-  InklecateStory,
-} from 'inklecate/types/InklecateStory';
+  DefaultWalkerArgs,
+} from './DefaultWalkerArgs';
 import {
   InkTree,
 } from './InkTree';
 
-declare function treePostWalk(args: {
-  readonly overloads?: {
-    readonly collectVisitsForTreePostRun?: (args: {
-      readonly story: InklecateStory;
-      readonly tree: InkTree;
-    }) => Promise<InkTree>;
+export function treePostWalk(
+  args: DefaultWalkerArgs &
+    {
+      readonly overloads?: {
+        readonly collectVisitsForTreePostWalk?: (
+          args: DefaultWalkerArgs,
+        ) => Promise<InkTree>;
 
-    readonly filterTree?: (args: {
-      readonly story: InklecateStory;
-      readonly tree: InkTree;
-    }) => Promise<InkTree>;
+        readonly filterTree?: (args: DefaultWalkerArgs) => Promise<InkTree>;
+        readonly resetStoryForNextWalk?: (
+          args: DefaultWalkerArgs,
+        ) => Promise<void>;
 
-    readonly resetStoryForNextWalk?: (args: {
-      readonly story: InklecateStory;
-      readonly tree: InkTree;
-    }) => Promise<void>;
+        readonly treePostWalk?: (
+          args: DefaultWalkerArgs &
+            { readonly ticks: number; },
+        ) => Promise<InkTree>;
+      };
 
-    readonly treePostWalk?: (args: {
-      readonly story: InklecateStory;
-      readonly ticks: number;
-      readonly tree: InkTree;
-    }) => Promise<InkTree>;
-  };
-
-  readonly story: InklecateStory;
-  readonly ticks: number;
-  readonly tree: InkTree;
-}): Promise<{
-  readonly story: InklecateStory;
-  readonly tree: InkTree;
-}>;
-
-export = treePostWalk;
+    readonly ticks: number;
+  },
+): Promise<DefaultWalkerArgs>;

@@ -1,14 +1,11 @@
-const { NextContent } = require('./InkPathHistoryTypes');
+import {
+  InkNodeTypes,
+} from './InkNodeTypes';
 
-module.exports = ({
+export const filterTree = ({
   overload,
-  tree,
-  tree: {
-    iterationIndex,
-    pathHistories: { [iterationIndex]: pathHistory },
-  },
-
   story,
+  tree,
 }) => new Promise(async (resolve, reject) => {
   if (typeof overload === 'function') {
     try {
@@ -22,7 +19,7 @@ module.exports = ({
   }
 
   tree.pathHistories = tree.pathHistories.map((pathHistory) => (
-    pathHistory.filter(({ type }) => type !== NextContent)
+    pathHistory.filter(({ type }) => type !== InkNodeTypes.NextContent)
   ));
 
   return resolve(tree);

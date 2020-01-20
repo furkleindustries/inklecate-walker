@@ -2,18 +2,17 @@ import {
   InkTree,
 } from './InkTree';
 
-declare function printPlaythroughFromTree(args: {
+interface PrintPlaythroughFromTreeArgs {
   readonly iterationIndex: number;
   readonly nodeMap: InkTree['nodeMap'];
-  readonly overloads?: {
-    readonly printPlaythroughFromTree?: (args: {
-      readonly iterationIndex: number;
-      readonly nodeMap: InkTree['nodeMap'];
-      readonly pathHistories: InkTree['pathHistories'];
-    }) => Promise<string>;
-  };
-
   readonly pathHistories: InkTree['pathHistories'];
-}): Promise<string>;
+}
 
-export = printPlaythroughFromTree;
+export function printPlaythroughFromTree(
+  args: PrintPlaythroughFromTreeArgs &
+    {
+      readonly overload?: (
+        args: PrintPlaythroughFromTreeArgs,
+      ) => Promise<string>;
+    },
+): Promise<string>;

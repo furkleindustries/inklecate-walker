@@ -1,6 +1,8 @@
-const { ContainerVisit } = require('./InkPathHistoryTypes');
+import {
+  InkNodeTypes,
+} from './InkNodeTypes';
 
-module.exports = ({
+export const wrapVisitContainer = ({
   story,
   tree,
 }) => {
@@ -33,7 +35,7 @@ module.exports = ({
       id,
       iterationIndex,
       turnIndex,
-      type: ContainerVisit,
+      type: InkNodeTypes.ContainerVisit,
     });
 
     return oldVisitContainer(container, atStart);

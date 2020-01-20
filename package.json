@@ -3,6 +3,7 @@
   "version": "0.5.1",
   "description": "A headless (non-graphical) analysis tool for Ink scripts.",
   "main": "index.js",
+  "bin": "cli.js",
   "scripts": {
     "test": "jest"
   },
@@ -26,6 +27,7 @@
   "dependencies": {
     "commander": "^4.1.0",
     "deep-object-diff": "^1.1.0",
+    "esm": "^3.2.25",
     "fast-diff": "^1.2.0",
     "fs-extra": "^8.1.0",
     "inkjs": "^1.10.2",

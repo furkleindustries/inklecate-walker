@@ -1,18 +1,11 @@
 import {
-  InklecateStory,
-} from 'inklecate/types/InklecateStory';
+  DefaultWalkerArgs,
+} from './DefaultWalkerArgs';
 import {
   InkTree,
 } from './InkTree';
 
-declare function filterTree(args: {
-  readonly overload?: (args: {
-    readonly story: InklecateStory;
-    readonly tree: InkTree;
-  }) => Promise<InkTree>;
-
-  readonly story: InklecateStory;
-  readonly tree: InkTree;
-}): Promise<InkTree>;
-
-export = filterTree;
+export function filterTree(
+  args: DefaultWalkerArgs &
+    { readonly overload?: (args: DefaultWalkerArgs) => Promise<InkTree>; },
+): Promise<InkTree>;

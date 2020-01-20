@@ -1,4 +1,4 @@
-module.exports = ({
+export const makeChoice = ({
   choice,
   choiceIndex,
   overload,

@@ -1,4 +1,4 @@
-module.exports = (id) => {
+export const getNamedContentContainerPaths = (id) => {
   const val = id && typeof id.split === 'function' ?
     id
       .split('.')

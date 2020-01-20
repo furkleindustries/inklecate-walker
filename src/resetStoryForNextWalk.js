@@ -1,13 +1,15 @@
-const { Story } = require('inkjs');
+import {
+  Story,
+} from 'inkjs/engine/Story';
 
-module.exports = ({
+export const resetStoryForNextWalk = ({
   overload,
   story,
   tree,
 }) => new Promise(async (resolve, reject) => {
   if (typeof overload === 'function') {
     try {
-      return resolve(await overloads.resetStoryForNextWalk({
+      return resolve(await overload({
         story,
         tree,
       }));

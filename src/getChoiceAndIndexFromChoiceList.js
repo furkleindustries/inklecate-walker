@@ -1,4 +1,4 @@
-module.exports = ({
+export const getChoiceAndIndexFromChoiceList = ({
   overload,
   story,
   story: { currentChoices },

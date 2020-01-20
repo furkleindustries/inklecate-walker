@@ -5,6 +5,4 @@ import {
   StartOptions,
 } from './StartOptions';
 
-declare function start(options: StartOptions): Promise<InkTree>;
-
-export = start;
+export function start(options: StartOptions): Promise<InkTree>;

@@ -1,10 +1,9 @@
-const {
-  NextContent,
-} = require('./InkPathHistoryTypes');
+import {
+  InkNodeTypes,
+} from './InkNodeTypes';
 
-module.exports = ({
+export const getLastIds = ({
   iterationIndex,
-  pathHistories,
   pathHistories: { [iterationIndex]: pathHistory },
 }) => {
   for (let ii = pathHistory.length - 1; ii >= 0; ii -= 1) {
@@ -15,7 +14,7 @@ module.exports = ({
       type,
     } = item;
 
-    if (type === NextContent) {
+    if (type === InkNodeTypes.NextContent) {
       return {
         containerId,
         id,

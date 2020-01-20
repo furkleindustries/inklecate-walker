@@ -1,7 +1,2 @@
-module.exports = {
-  blockHandler,
-  choiceHandler,
-  compileInk,
-  lineHandler,
-  walk,
-};
+require = require('esm')(module);
+module.exports = require('./main');

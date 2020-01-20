@@ -1,6 +1,8 @@
-const { NextContent } = require('./InkPathHistoryTypes');
+import {
+  InkNodeTypes,
+} from './InkNodeTypes';
 
-module.exports = ({
+export const wrapNextContent = ({
   story,
   tree,
 }) => {
@@ -36,7 +38,7 @@ module.exports = ({
       id,
       iterationIndex,
       turnIndex,
-      type: NextContent,
+      type: InkNodeTypes.NextContent,
     });
 
     return oldNextContent();

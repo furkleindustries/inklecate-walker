@@ -1,4 +1,4 @@
-module.exports = (tree) => {
+export const validateTreeWithErrorOnFail = (tree) => {
   if (!tree) {
     throw new Error(
       'The tree output from the initializeTree overload was falsy.'
