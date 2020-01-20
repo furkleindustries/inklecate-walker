@@ -1,17 +1,12 @@
 import {
-  InklecateStory,
-} from 'inklecate/types/InklecateStory';
+  DefaultWalkerArgs,
+} from './DefaultWalkerArgs';
 import {
   InkTree,
 } from './InkTree';
 
-export function collectVisitsForTreePostWalk(args: {
-  readonly overload: (args: {
-    readonly story: InklecateStory;
-    readonly tree: InkTree;
-  }) => Promise<InkTree>;
-
-  readonly story: InklecateStory;
-  readonly tree: InkTree;
-}): Promise<InkTree>;
+export function collectVisitsForTreePostWalk(
+  args: DefaultWalkerArgs &
+    { readonly overload: (args: DefaultWalkerArgs) => Promise<InkTree>; },
+): Promise<InkTree>;
 
