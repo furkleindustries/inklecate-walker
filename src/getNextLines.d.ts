@@ -2,9 +2,6 @@ import {
   DefaultWalkerArgs,
 } from './DefaultWalkerArgs';
 import {
-  InklecateStory,
-} from 'inklecate/types/InklecateStory';
-import {
   InkNode,
 } from './InkNode';
 import {
