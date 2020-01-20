@@ -22,7 +22,7 @@ export const getStringFromAstNodeContentItem = ({
   } else if (type === InkNodeTypes.ChoicePoint) {
     return '***';
   } else if (type === InkNodeTypes.ChoiceSelection && content) {
-    return content;
+    return `#${Number(content) + 1}`;
   } else if (type === InkNodeTypes.Line && content && content.text) {
     return content.text;
   }

@@ -22,7 +22,7 @@ export const printPlaythroughFromTree = ({
     }
   }
 
-  const itemHistory = getContentItemHistory({
+  const itemHistory = await getContentItemHistory({
     iterationIndex,
     nodeMap,
     overload: overloads && typeof overloads.getContentItemHistory === 'function' ?

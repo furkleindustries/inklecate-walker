@@ -13,7 +13,7 @@ import {
 
 export const start = ({
   inputFilepath,
-  iterationCount,
+  iterationCount = 1,
   overloads = {},
 }) => new Promise(async (resolve, reject) => {
   let json;

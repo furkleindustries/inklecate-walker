@@ -5,7 +5,7 @@ import {
   InkNodeHistoryItem,
 } from './InkNodeHistoryItem';
 
-export function getHistoryItemAtTurnIndex(args: {
+export function getHistoryItemAtIterationAndTurnIndex(args: {
   readonly iterationIndex: number,
   readonly node: InkNode,
   readonly turnIndex: number,

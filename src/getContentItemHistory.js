@@ -28,12 +28,12 @@ export const getContentItemHistory = ({
   }
 
   const items = [];
-  await Promise.all(pathHistory.map(({
+  for (const {
     choiceIndex,
     id,
     turnIndex,
     type,
-  }) => new Promise(async (innerResolve) => {
+  } of pathHistory) {
     let node;
     try {
       node = await query({ nodeMap }, id);
@@ -41,6 +41,7 @@ export const getContentItemHistory = ({
       return reject(err);
     }
 
+    console.log(type);
     if (node) {
       if (type === InkNodeTypes.ChoiceSelection) {
         items.push({
@@ -51,7 +52,7 @@ export const getContentItemHistory = ({
           turnIndex,
           type,
         });
-      } else {
+      } else if (type !== InkNodeTypes.ChoicePoint) {
         const item = getHistoryItemAtIterationAndTurnIndex({
           iterationIndex,
           node,
@@ -63,9 +64,7 @@ export const getContentItemHistory = ({
         }
       }
     }
-
-    return innerResolve();
-  })));
+  };
 
   return resolve(items);
 });
