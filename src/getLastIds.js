@@ -6,10 +6,6 @@ export const getLastIds = ({
   iterationIndex,
   pathHistories: { [iterationIndex]: pathHistory },
 }) => {
-  if (iterationIndex) {
-    debugger;
-  }
-
   for (let ii = pathHistory.length - 1; ii >= 0; ii -= 1) {
     const item = pathHistory[ii];
     const {
