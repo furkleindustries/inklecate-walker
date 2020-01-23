@@ -15,6 +15,7 @@ export const getContentItemHistory = ({
   pathHistories,
   pathHistories: { [iterationIndex]: pathHistory },
 }) => new Promise(async (resolve, reject) => {
+  debugger;
   if (typeof overload === 'function') {
     try {
       return resolve(await overload({
@@ -29,6 +30,8 @@ export const getContentItemHistory = ({
 
   const items = [];
   for (const {
+    choiceIndex,
+    containerId,
     id,
     turnIndex,
     type,
@@ -40,15 +43,26 @@ export const getContentItemHistory = ({
       return reject(err);
     }
 
-    if (node && type !== InkNodeTypes.ChoicePoint) {
-      const item = getHistoryItemAtIterationAndTurnIndex({
-        iterationIndex,
-        node,
-        turnIndex,
-      });
-
-      if (item) {
-        items.push(item);
+    if (node) {
+      if (type === InkNodeTypes.ChoiceSelection) {
+        items.push({
+          containerId,
+          content: choiceIndex,
+          id,
+          iterationIndex,
+          turnIndex,
+          type,
+        });
+      } else if (type !== InkNodeTypes.ChoicePoint) {
+        const item = getHistoryItemAtIterationAndTurnIndex({
+          iterationIndex,
+          node,
+          turnIndex,
+        });
+  
+        if (item) {
+          items.push(item);
+        }
       }
     }
   }
