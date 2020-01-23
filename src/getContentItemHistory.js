@@ -41,7 +41,6 @@ export const getContentItemHistory = ({
       return reject(err);
     }
 
-    console.log(type);
     if (node) {
       if (type === InkNodeTypes.ChoiceSelection) {
         items.push({
@@ -64,7 +63,7 @@ export const getContentItemHistory = ({
         }
       }
     }
-  };
+  }
 
   return resolve(items);
 });

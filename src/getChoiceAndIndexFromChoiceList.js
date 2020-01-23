@@ -16,7 +16,7 @@ export const getChoiceAndIndexFromChoiceList = ({
       tree,
     });
   } else {
-    const index = Math.floor(Math.random() * currentChoices.length - 1);
+    const index = Math.floor(Math.random() * currentChoices.length);
     retVal = {
       choice: currentChoices[index],
       choiceIndex: index,
