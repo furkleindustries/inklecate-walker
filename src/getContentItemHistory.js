@@ -15,6 +15,7 @@ export const getContentItemHistory = ({
   pathHistories,
   pathHistories: { [iterationIndex]: pathHistory },
 }) => new Promise(async (resolve, reject) => {
+  console.log(iterationIndex);
   if (typeof overload === 'function') {
     try {
       return resolve(await overload({
@@ -57,7 +58,7 @@ export const getContentItemHistory = ({
           node,
           turnIndex,
         });
-  
+
         if (item) {
           items.push(item);
         }

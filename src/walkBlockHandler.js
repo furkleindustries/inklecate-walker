@@ -70,10 +70,7 @@ export const walkBlockHandler = ({
     };
 
     if (id in nodeMap) {
-      const node = nodeMap[id];
-      if (iterationIndex > node.iterationIndex || turnIndex > node.turnIndex) {
-        nodeMap[id].history.push(historyItem);
-      }
+      nodeMap[id].history.push(historyItem);
     } else {
       nodeMap[id] = {
         containerId,
