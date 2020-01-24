@@ -10,7 +10,7 @@ export interface InkPathHistory<T extends InkNodeTypes = InkNodeTypes> {
   readonly containerId: string;
   readonly id: string;
   readonly iterationIndex: number;
-  readonly targetId: T extends InkNodeTypes.ChoicePoint ?
+  readonly targetId: T extends InkNodeTypes.Choice ?
     string :
     undefined;
 
