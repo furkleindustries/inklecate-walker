@@ -50,8 +50,12 @@ export const walkBlockHandler = ({
     sourcePath,
     targetPath,
     text: content,
-  }) => {
-    if (!targetPath) {
+  }, choiceIndex) => {
+    if (!sourcePath) {
+      return reject(new Error(
+        'No source path found in choice. This is a fatal error.'
+      ));
+    } else if (!targetPath) {
       return reject(new Error(
         'No target path found in choice. This is a fatal error.'
       ));
@@ -61,7 +65,12 @@ export const walkBlockHandler = ({
       componentsString: id,
     } = sourcePath;
 
+    const {
+      componentsString: targetId,
+    } = targetPath;
+
     const historyItem = {
+      choiceIndex,
       containerId,
       content,
       id,
