@@ -46,6 +46,7 @@ export const walkBlockHandler = ({
     type: InkNodeTypes.ChoicePoint,
   });
 
+  debugger;
   currentChoices.forEach(({
     sourcePath,
     targetPath,
@@ -62,10 +63,6 @@ export const walkBlockHandler = ({
     }
 
     const {
-      componentsString: id,
-    } = sourcePath;
-
-    const {
       componentsString: targetId,
     } = targetPath;
 
@@ -73,7 +70,7 @@ export const walkBlockHandler = ({
       choiceIndex,
       containerId,
       content,
-      id,
+      id: sourcePath,
       iterationIndex,
       targetId,
       turnIndex,
