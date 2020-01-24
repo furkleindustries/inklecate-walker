@@ -161,8 +161,9 @@ export const walkSingleTick = ({
   pathHistory.push({
     choiceIndex,
     containerId,
-    id: targetId,
+    id,
     iterationIndex,
+    targetId,
     turnIndex,
     type: InkNodeTypes.ChoiceSelection,
   });

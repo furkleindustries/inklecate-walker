@@ -57,14 +57,16 @@ export const walkBlockHandler = ({
       ));
     }
 
-    const { componentsString: id } = targetPath;
-    const containerId = sourcePath || null;
+    const {
+      componentsString: id,
+    } = sourcePath;
 
     const historyItem = {
       containerId,
       content,
       id,
       iterationIndex,
+      targetId,
       turnIndex,
       type: InkNodeTypes.Choice,
     };
