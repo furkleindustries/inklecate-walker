@@ -93,9 +93,11 @@ export const walkBlockHandler = ({
     }
 
     pathHistory.push({
+      choiceIndex,
       containerId,
       id,
       iterationIndex,
+      targetId,
       turnIndex,
       type: InkNodeTypes.Choice,
     });
