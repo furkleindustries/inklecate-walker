@@ -15,7 +15,6 @@ export const getContentItemHistory = ({
   pathHistories,
   pathHistories: { [iterationIndex]: pathHistory },
 }) => new Promise(async (resolve, reject) => {
-  debugger;
   if (typeof overload === 'function') {
     try {
       return resolve(await overload({

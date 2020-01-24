@@ -44,15 +44,6 @@ export const walkSingleTick = ({
     }
   }
 
-  /**
-   * Destructure the current turn index first. This probably isn't necessary,
-   * as the turn index doesn't really ever change, except after making choices,
-   * but it can't hurt.
-   */
-  const {
-    state: { currentTurnIndex: turnIndex },
-  } = story;
-
   try {
     /**
      * Collect all the available outputs from the story, both text and tags,
@@ -105,6 +96,7 @@ export const walkSingleTick = ({
    * it.)
    */
   const {
+    state: { currentTurnIndex: turnIndex },
     variablesState: { jsonToken: content },
   } = story;
 

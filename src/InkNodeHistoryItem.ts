@@ -7,10 +7,9 @@ import {
 
 export interface InkNodeHistoryItem<T extends InkNodeTypes = InkNodeTypes> {
   readonly containerId: string;
-  readonly content?:
-    InkNodeHistoryItemLineContent |
-    string |
-    number;
+  readonly content?: T extends InkNodeTypes.Line ?
+    InkNodeHistoryItemLineContent :
+    string | number;
 
   readonly id: string;
   readonly iterationIndex: number;
