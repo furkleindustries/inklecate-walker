@@ -46,7 +46,6 @@ export const walkBlockHandler = ({
     type: InkNodeTypes.ChoicePoint,
   });
 
-  debugger;
   currentChoices.forEach(({
     sourcePath,
     targetPath,
